@@ -31,7 +31,7 @@ const testimonialsData = [
 
 function Testimonial() {
   return (
-    <div className="w-full bg-slate-50 py-16 sm:py-24">
+    <div className="w-full bg-[#eeefff] py-16 sm:py-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center mb-12">

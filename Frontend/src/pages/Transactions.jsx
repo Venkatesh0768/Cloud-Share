@@ -1,8 +1,11 @@
 import React from 'react'
+import DashboardLayout from '../layouts/DashboardLayout'
 
 function Transactions() {
   return (
-    <div>Transactions</div>
+    <DashboardLayout activeTab="Transactions">
+      <div>Transactions</div>
+    </DashboardLayout>
   )
 }
 

@@ -1,12 +1,28 @@
-import { UserButton } from '@clerk/clerk-react'
-import React from 'react'
+import { useAuth, UserButton } from "@clerk/clerk-react";
+import React, { useEffect } from "react";
+import DashboardLayout from "../layouts/DashboardLayout";
 
-function DashBoard() {
+function Dashboard() {
+  const { getToken } = useAuth();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = await getToken();
+        console.log(token);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [getToken]);
+
   return (
-    <div>
-        <UserButton/>
-    </div>
-  )
+    <DashboardLayout activeTab="Dashboard">
+      <div>Dashboard Content</div>
+    </DashboardLayout>
+  );
 }
 
-export default DashBoard
+export default Dashboard;

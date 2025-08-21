@@ -1,8 +1,10 @@
-import React from 'react'
+import DashboardLayout from '../layouts/DashboardLayout'
 
 function Upload() {
   return (
-    <div>Upload</div>
+    <DashboardLayout  activeTab={"Upload"}>
+      <div>Upload</div>
+    </DashboardLayout>
   )
 }
 

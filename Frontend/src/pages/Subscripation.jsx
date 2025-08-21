@@ -1,8 +1,11 @@
-import React from 'react'
+
+import DashboardLayout from '../layouts/DashboardLayout'
 
 function Subscripation() {
   return (
-    <div>Subscripation</div>
+    <DashboardLayout activeTab="Subscriptions">
+      <div>Subscripation</div>
+    </DashboardLayout>
   )
 }
 

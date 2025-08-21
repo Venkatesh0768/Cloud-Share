@@ -1,15 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import DashBoard from "./pages/DashBoard";
-import { Upload } from "lucide-react";
 import MyFiles from "./pages/MyFiles";
 import Subscripation from "./pages/Subscripation";
 import Transactions from "./pages/Transactions";
 import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/clerk-react";
+import Upload from "./pages/Upload";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <div>
+       <Toaster />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route
@@ -39,7 +41,7 @@ function App() {
           }
         />
         <Route
-          path="/myFiles"
+          path="/myfiles"
           element={
             <>
               <SignedIn>
@@ -52,7 +54,7 @@ function App() {
           }
         />
         <Route
-          path="/subscripation"
+          path="/subscription"
           element={
             <>
               <SignedIn>
