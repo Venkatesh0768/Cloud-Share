@@ -4,10 +4,12 @@ import org.example.cloudsharebackend.documents.UserCredits;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface UserCreditsRepository  extends MongoRepository<UserCredits ,String> {
 
-    UserCredits findByClerkId(String clerkId);
+    Optional<UserCredits> findByClerkId(String clerkId);
 
     Boolean existsByClerkId(String clerkId);
 

@@ -3,8 +3,11 @@ package org.example.cloudsharebackend.services;
 import org.example.cloudsharebackend.documents.ProfileDocument;
 import org.example.cloudsharebackend.dtos.ProfileDto;
 import org.example.cloudsharebackend.repositories.ProfileRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.security.Security;
 import java.util.Optional;
 
 @Service
@@ -89,5 +92,14 @@ public class ProfileService {
         ProfileDocument profileDocument = profileRepository.findByClerkId(clerkId)
                 .orElseThrow(() -> new IllegalArgumentException("Profile not found for clerkId: " + clerkId));
         profileRepository.delete(profileDocument);
+    }
+
+    public  ProfileDocument getCurrentProfile() {
+        if(SecurityContextHolder.getContext().getAuthentication() == null) {
+           throw new UsernameNotFoundException("User not authenticated");
+        }
+        String clerkId = SecurityContextHolder.getContext().getAuthentication().getName();
+        return profileRepository.findByClerkId(clerkId)
+                .orElseThrow(() -> new UsernameNotFoundException("Profile not found for clerkId: " + clerkId));
     }
 }

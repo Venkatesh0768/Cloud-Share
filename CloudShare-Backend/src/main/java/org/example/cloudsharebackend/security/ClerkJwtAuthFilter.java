@@ -36,7 +36,7 @@ public class ClerkJwtAuthFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         // Skip webhook endpoints
-        if (request.getRequestURI().contains("/webhook")) {
+        if (request.getRequestURI().contains("/webhook") || request.getRequestURI().contains("/public") || request.getRequestURI().contains("/files/download")) {
             filterChain.doFilter(request, response);
             return;
         }

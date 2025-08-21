@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FileMetadataDocumentRepository extends MongoRepository<FileMetadataDocument , String> {
+public interface FileMetadataRepository extends MongoRepository<FileMetadataDocument , String> {
     List<FileMetadataDocument> findByClerkId(String clerkId);
 
     Long countByClerkId(String clerkId);
