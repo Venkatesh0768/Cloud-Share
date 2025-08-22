@@ -8,6 +8,7 @@ function MyFileCard({
   deleteFile,
   formatFileSize,
   formatDate,
+  handleShareClick
 }) {
   return (
     <tr key={file.id} className="hover:bg-gray-50 transition-colors group">
@@ -42,7 +43,9 @@ function MyFileCard({
           {file.public ? "Public" : "Private"}
         </button>
         {file.public ? (
-          <span className="flex items-center gap-2 ml-4 px-4 py-2 rounded-full   font-semibold border border-purple-500 shadow-lg hover:bg-purple-700 hover:scale-105 hover:text-white transition-transform duration-300 cursor-pointer">
+          <span 
+          onClick={() => handleShareClick(file)}
+          className="flex items-center gap-2 ml-4 px-4 py-2 rounded-full   font-semibold border border-purple-500 shadow-lg hover:bg-purple-700 hover:scale-105 hover:text-white transition-transform duration-300 cursor-pointer">
             <Copy size={20} />
             Share Link
           </span>

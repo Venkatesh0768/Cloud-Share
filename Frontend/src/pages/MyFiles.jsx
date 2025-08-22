@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import MyFileCard from "../components/MyFileCard";
 import MyfileGrid from "../components/MyfileGrid";
 import { API_ENDPOINTS } from "../utils/apienpoints";
+import OpenShareModal from "../components/OpenShareModel";
 
 function MyFiles() {
   const [files, setFiles] = useState([]);
@@ -28,8 +29,15 @@ function MyFiles() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const { getToken } = useAuth();
   const navigate = useNavigate();
+
+  const handleShareClick = (file) => {
+    setSelectedFile(file);
+    setShareModalOpen(true);
+  };
 
   const fetchFiles = async () => {
     try {
@@ -96,15 +104,16 @@ function MyFiles() {
       });
 
       if (response.ok) {
-        const blob = await response.blob();
+        const blob = await response.blob(); // ✅ fixed here
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = name;
-        document.body.appendChild(a);
-        a.click();
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", name);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
         window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+
         toast.success("Download started");
       } else {
         toast.error("Failed to download file");
@@ -114,7 +123,6 @@ function MyFiles() {
       toast.error("Failed to download file");
     }
   };
-
   const togglePublicStatus = async (id) => {
     try {
       const token = await getToken();
@@ -327,6 +335,7 @@ function MyFiles() {
                           deleteFile={deleteFile}
                           formatFileSize={formatFileSize}
                           formatDate={formatDate}
+                          handleShareClick={handleShareClick}
                         />
                       ))}
                     </tbody>
@@ -350,6 +359,11 @@ function MyFiles() {
             )}
           </div>
         )}
+        <OpenShareModal
+          file={selectedFile}
+          isOpen={shareModalOpen}
+          onClose={() => setShareModalOpen(false)}
+        />
       </div>
     </DashboardLayout>
   );
