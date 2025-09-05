@@ -1,7 +1,6 @@
 // App.jsx
 import { Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
-import DashBoard from "./pages/DashBoard";
 import MyFiles from "./pages/MyFiles";
 import Subscripation from "./pages/Subscripation";
 import Transactions from "./pages/Transactions";
@@ -17,6 +16,7 @@ import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminFiles from "./pages/Admin/AdminFiles";
 import AdminTransactionDetail from "./pages/Admin/AdminTransactionDetail";
 import AdminTransactions from "./pages/Admin/AdminTransactions";
+import Dashboard from "./pages/DashBoard";
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
             element={
               <>
                 <SignedIn>
-                  <DashBoard />
+                  <Dashboard />
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />
