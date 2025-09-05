@@ -21,10 +21,19 @@ public class ProfileController {
         return ResponseEntity.ok(service.findProfileByEmail(email));
     }
 
+    @GetMapping("/current")
+    public ResponseEntity<ProfileDto> getCurrentProfile() {
+        try {
+            ProfileDto profile = service.findProfileByClerkId(service.getCurrentProfile().getClerkId()).orElse(null);
+            return ResponseEntity.ok(profile);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
 
     @PostMapping("/register")
     public ResponseEntity<?> registerProfile(@RequestBody ProfileDto profileDto) {
-        HttpStatus status  = service.existsByClerkId(profileDto.getClerkId()) ? HttpStatus.OK : HttpStatus.CREATED;
         ProfileDto savedProfile = service.createProfile(profileDto);
         if (savedProfile == null) {
             return ResponseEntity.badRequest().body("Profile creation failed. Email might already exist.");

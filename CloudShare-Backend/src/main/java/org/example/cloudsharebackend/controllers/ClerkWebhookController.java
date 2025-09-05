@@ -74,12 +74,21 @@ public class ClerkWebhookController {
             email = emailNode.get("email_address").asText();
         }
 
+        // Extract role from public_metadata
+        String role = "USER"; // Default role
+        JsonNode publicMetadata = data.path("public_metadata");
+        if (publicMetadata.has("role")) {
+            role = publicMetadata.get("role").asText().toUpperCase();
+        }
+
         ProfileDto updatedProfile = ProfileDto.builder()
                 .clerkId(clerkId)
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
+                .role(role)
                 .profileUrl(profileUrl)
+                .role(role)
                 .build();
 
         profileService.updateProfile(updatedProfile);
@@ -97,12 +106,20 @@ public class ClerkWebhookController {
             email = emailNode.get("email_address").asText();
         }
 
+        // Extract role from public_metadata
+        String role = "USER"; // Default role
+        JsonNode publicMetadata = data.path("public_metadata");
+        if (publicMetadata.has("role")) {
+            role = publicMetadata.get("role").asText().toUpperCase();
+        }
+
         ProfileDto newProfile = ProfileDto.builder()
                 .clerkId(clerkId)
                 .firstName(firstName)
                 .lastName(lastName)
                 .email(email)
                 .profileUrl(profileUrl)
+                .role(role)
                 .build();
 
         profileService.createProfile(newProfile);

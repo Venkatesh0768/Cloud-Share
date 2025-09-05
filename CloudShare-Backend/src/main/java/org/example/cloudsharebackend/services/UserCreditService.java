@@ -1,6 +1,5 @@
 package org.example.cloudsharebackend.services;
 
-import lombok.RequiredArgsConstructor;
 import org.example.cloudsharebackend.documents.UserCredits;
 import org.example.cloudsharebackend.repositories.UserCreditsRepository;
 import org.springframework.stereotype.Service;
@@ -48,6 +47,14 @@ public class UserCreditService {
             throw new RuntimeException("Not enough credits to perform this action");
         }
         userCredits.setCredits(userCredits.getCredits() - 1);
+        return userCreditsRepository.save(userCredits);
+    }
+
+    public UserCredits addCredits(String clerkId , Integer creditsToAdd , String plan){
+       UserCredits userCredits =  userCreditsRepository.findByClerkId(clerkId)
+                .orElseGet(()-> createInitialCredits(clerkId));
+        userCredits.setCredits(userCredits.getCredits() + creditsToAdd);
+        userCredits.setPlan(plan);
         return userCreditsRepository.save(userCredits);
     }
 }

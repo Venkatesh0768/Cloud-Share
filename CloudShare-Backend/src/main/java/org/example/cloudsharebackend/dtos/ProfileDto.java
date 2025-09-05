@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.Instant;
 
@@ -21,6 +19,7 @@ public class ProfileDto {
     private String email;
     private Integer credits;
     private String profileUrl;
+    private String role; // Added role field
     private Instant createdAt;
     private Instant updatedAt;
 }

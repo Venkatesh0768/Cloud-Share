@@ -27,6 +27,7 @@ public class ProfileDocument {
     private String email;
     private Integer credits;
     private String profileUrl;
+    private String role; // Added role field
 
     @CreatedDate
     private Instant createdAt;
