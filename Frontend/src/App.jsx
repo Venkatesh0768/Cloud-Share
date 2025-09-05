@@ -1,3 +1,4 @@
+// App.jsx
 import { Route, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import DashBoard from "./pages/DashBoard";
@@ -9,6 +10,14 @@ import Upload from "./pages/Upload";
 import { Toaster } from "react-hot-toast";
 import PublicFileView from "./pages/PublicFileView";
 import { UserCreditsProvider } from "./context/UserCreditContext";
+import AdminRoute from "./utils/AdminRoute";
+import AdminHome from "./pages/Admin/AdminHome";
+import AdminUserDetail from "./pages/Admin/AdminUserDetail";
+import AdminUsers from "./pages/Admin/AdminUsers";
+import AdminFiles from "./pages/Admin/AdminFiles";
+import AdminTransactionDetail from "./pages/Admin/AdminTransactionDetail";
+import AdminTransactions from "./pages/Admin/AdminTransactions";
+
 
 function App() {
   return (
@@ -17,6 +26,8 @@ function App() {
       <UserCreditsProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
+
+          {/* User area */}
           <Route
             path="/dashboard"
             element={
@@ -82,7 +93,103 @@ function App() {
               </>
             }
           />
+
+          {/* Public */}
           <Route path="/files/:id" element={<PublicFileView />} />
+
+          {/* Admin area (protected by AdminRoute) */}
+          <Route
+            path="/admin"
+            element={
+              <>
+                <SignedIn>
+                  <AdminRoute>
+                    <AdminHome />
+                  </AdminRoute>
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/admin/users"
+            element={
+              <>
+                <SignedIn>
+                  <AdminRoute>
+                    <AdminUsers />
+                  </AdminRoute>
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/admin/users/:clerkId"
+            element={
+              <>
+                <SignedIn>
+                  <AdminRoute>
+                    <AdminUserDetail />
+                  </AdminRoute>
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/admin/files"
+            element={
+              <>
+                <SignedIn>
+                  <AdminRoute>
+                    <AdminFiles />
+                  </AdminRoute>
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/admin/transactions"
+            element={
+              <>
+                <SignedIn>
+                  <AdminRoute>
+                    <AdminTransactions />
+                  </AdminRoute>
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+          <Route
+            path="/admin/transactions/:id"
+            element={
+              <>
+                <SignedIn>
+                  <AdminRoute>
+                    <AdminTransactionDetail />
+                  </AdminRoute>
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+          />
+
+          {/* 404 */}
           <Route
             path="*"
             element={

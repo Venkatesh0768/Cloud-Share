@@ -42,6 +42,8 @@ function MyFiles() {
   const fetchFiles = async () => {
     try {
       const token = await getToken();
+      console.log(token);
+      
       if (!token) {
         console.error("No token found");
         return;

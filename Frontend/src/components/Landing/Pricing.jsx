@@ -1,50 +1,6 @@
 import { IndianRupee, Check } from "lucide-react";
 import React from "react";
-
-const pricingPlans = [
-  {
-    name: "Free",
-    description: "Perfect for getting started",
-    price: 0,
-    features: [
-      "5 file uploads",
-      "Basic file sharing",
-      "7-day file retention",
-      "Email support",
-    ],
-    isPopular: false,
-    buttonText: "Get Started",
-  },
-  {
-    name: "Premium",
-    description: "For individuals with larger needs",
-    price: 500,
-    features: [
-      "500 file uploads",
-      "Advanced file sharing",
-      "30-day file retention",
-      "Priority email support",
-      "File analytics",
-    ],
-    isPopular: true,
-    buttonText: "Go Premium",
-  },
-  {
-    name: "Ultimate",
-    description: "For teams and businesses",
-    price: 2500,
-    features: [
-      "5000 file uploads",
-      "Team sharing capabilities",
-      "Unlimited file retention",
-      "24/7 priority support",
-      "Advanced analytics",
-      "API access",
-    ],
-    isPopular: false,
-    buttonText: "Go Ultimate",
-  },
-];
+import { pricingPlans } from "../../assets/data";
 
 function Pricing({ openSignUp }) {
   return (

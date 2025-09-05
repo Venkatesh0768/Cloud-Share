@@ -56,6 +56,7 @@ export const UserCreditsProvider = ({ children }) => {
     loading,
     fetchUserCredits,
     updateCredits,
+    setCredits, // ✅ exposed so Subscription can directly update
   };
 
   return (

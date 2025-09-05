@@ -42,6 +42,7 @@ function PublicFileView() {
   const downloadFile = async (id, name) => {
     try {
       const token = await getToken(); // ✅ FIXED: await added
+      
       const response = await fetch(API_ENDPOINTS.DOWNLOAD_FILE(id), {
         headers: {
           Authorization: `Bearer ${token}`,
