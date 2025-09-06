@@ -1,14 +1,14 @@
 import { SignedIn, UserButton } from "@clerk/clerk-react";
-import { Menu, Share2, Wallet, X } from "lucide-react";
+import { Menu, Share2, X } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SideMenu from "./SideMenu";
 import CreditDisplay from "./CreditDisplay";
 import { UserCreditContext } from "../context/UserCreditContext";
 
-function NavBar({activeTab}) {
+function NavBar({ activeTab }) {
   const [openSideMenu, setOpenSideMenu] = useState(false);
-  const { fetchUserCredits , credits } = useContext(UserCreditContext);
+  const { fetchUserCredits, credits } = useContext(UserCreditContext);
   useEffect(() => {
     fetchUserCredits();
   }, [fetchUserCredits]);
@@ -42,7 +42,7 @@ function NavBar({activeTab}) {
         <SignedIn>
           <div className="flex items-center gap-4">
             <Link to="/subscription">
-              <CreditDisplay credits={credits}/>
+              <CreditDisplay credits={credits} />
             </Link>
             <UserButton />
           </div>

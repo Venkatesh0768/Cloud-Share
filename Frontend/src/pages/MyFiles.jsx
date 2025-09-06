@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import {
   Grid,
@@ -42,10 +42,8 @@ function MyFiles() {
   const fetchFiles = async () => {
     try {
       const token = await getToken();
-      console.log(token);
       
       if (!token) {
-        console.error("No token found");
         return;
       }
 
@@ -57,14 +55,11 @@ function MyFiles() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Files:", data);
         setFiles(data);
       } else {
-        console.error("Failed to fetch files", response.statusText);
         toast.error("Failed to fetch files.");
       }
     } catch (error) {
-      console.error("Error fetching files:", error);
       toast.error("Failed to fetch files. Please try again later.");
     }
   };
@@ -91,7 +86,6 @@ function MyFiles() {
         toast.error("Failed to delete file");
       }
     } catch (error) {
-      console.error("Error deleting file:", error);
       toast.error("Failed to delete file");
     }
   };
@@ -106,7 +100,7 @@ function MyFiles() {
       });
 
       if (response.ok) {
-        const blob = await response.blob(); // ✅ fixed here
+        const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
@@ -121,7 +115,6 @@ function MyFiles() {
         toast.error("Failed to download file");
       }
     } catch (error) {
-      console.error("Error downloading file:", error);
       toast.error("Failed to download file");
     }
   };
@@ -142,7 +135,6 @@ function MyFiles() {
         toast.error("Failed to update file visibility");
       }
     } catch (error) {
-      console.error("Error toggling file visibility:", error);
       toast.error("Failed to update file visibility");
     }
   };

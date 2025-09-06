@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import DashboardLayout from '../layouts/DashboardLayout';
 import { useAuth } from '@clerk/clerk-react';
 import { API_ENDPOINTS } from '../utils/apienpoints';
@@ -40,7 +40,6 @@ function Transactions() {
           throw new Error(response.data.message || 'Failed to fetch transactions');
         }
       } catch (error) {
-        console.error('Error fetching transactions:', error);
         let errorMessage = '❌ Failed to load transactions. ';
         if (error.name === 'AbortError') {
           errorMessage += 'Request timed out. Please try again.';

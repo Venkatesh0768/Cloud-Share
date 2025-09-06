@@ -66,7 +66,6 @@ function Upload() {
 
       setFiles([]);
     } catch (err) {
-      console.error(err);
       setMessage("Error uploading files.");
       setMessageType("error");
     } finally {

@@ -18,9 +18,8 @@ import {
   Eye
 } from "lucide-react";
 import { API_ENDPOINTS } from "../utils/apienpoints";
-// eslint-disable-next-line no-unused-vars
-import { AnimatePresence, motion } from "framer-motion"; // Added for animations
-import { Tooltip } from 'react-tooltip'; // Assuming react-tooltip is installed for better UX
+import { AnimatePresence, motion } from "framer-motion";
+import { Tooltip } from 'react-tooltip';
 
 // File type icons mapping
 const getFileIcon = (fileName) => {

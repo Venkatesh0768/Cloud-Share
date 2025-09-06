@@ -3,13 +3,13 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import SideMenu from "../components/SideMenu";
 
-function DashboardLayout({ children , activeTab }) {
+function DashboardLayout({ children, activeTab }) {
   const { user } = useUser();
 
   return (
     <div className="min-h-screen flex flex-col">
       {/* NavBar */}
-      <NavBar activeTab={activeTab}/>
+      <NavBar activeTab={activeTab} />
 
       {user && (
         <div className="flex flex-1">

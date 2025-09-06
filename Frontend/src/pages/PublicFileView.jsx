@@ -14,7 +14,7 @@ function PublicFileView() {
   useEffect(() => {
     const fetchFile = async () => {
       try {
-        const token = await getToken(); // ✅ FIXED: await added
+        const token = await getToken();
         const response = await fetch(API_ENDPOINTS.FETCH_FILES_ID(id), {
           method: "GET",
           headers: {
@@ -29,7 +29,6 @@ function PublicFileView() {
           toast.error(data?.message || "File not found");
         }
       } catch (error) {
-        console.error("Error fetching file:", error);
         toast.error("Something went wrong");
       } finally {
         setLoading(false);
@@ -41,7 +40,7 @@ function PublicFileView() {
 
   const downloadFile = async (id, name) => {
     try {
-      const token = await getToken(); // ✅ FIXED: await added
+      const token = await getToken();
       
       const response = await fetch(API_ENDPOINTS.DOWNLOAD_FILE(id), {
         headers: {
@@ -65,7 +64,6 @@ function PublicFileView() {
         toast.error("Failed to download file");
       }
     } catch (error) {
-      console.error("Error downloading file:", error);
       toast.error("Failed to download file");
     }
   };

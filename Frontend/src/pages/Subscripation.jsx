@@ -51,7 +51,7 @@ function Subscription() {
         setMessage("✅ Free plan activated!");
         setMessageType("success");
       } catch (error) {
-        setMessage("❌ Failed to activate free plan" , error);
+        setMessage("❌ Failed to activate free plan");
         setMessageType("error");
       } finally {
         setCurrentProcessingPlan(null);
@@ -143,7 +143,6 @@ function Subscription() {
         
         // Handle payment failure
         razorpay.on('payment.failed', function (response) {
-          console.error('Payment failed:', response.error);
           setMessage(`❌ Payment failed: ${response.error.description}`);
           setMessageType("error");
           setProcessingPayment(false);
@@ -155,7 +154,6 @@ function Subscription() {
         throw new Error("Razorpay SDK not loaded");
       }
     } catch (error) {
-      console.error("Payment initiation error:", error);
       
       let errorMessage = "❌ Failed to initiate payment. ";
       if (error.name === 'AbortError') {
@@ -210,7 +208,6 @@ function Subscription() {
         setMessageType("error");
       }
     } catch (error) {
-      console.error("Payment verification error:", error);
       setMessage("❌ Payment verification failed. Your payment was processed but credits may not be added. Please contact support.");
       setMessageType("error");
     } finally {
@@ -266,7 +263,6 @@ function Subscription() {
           setCredits(response.data.credits);
         }
       } catch (error) {
-        console.error("Error fetching user credits:", error);
         if (error.response?.status !== 401) { // Don't show error for auth issues
           setMessage("⚠️ Failed to load your current credits. Please refresh the page.");
           setMessageType("error");
