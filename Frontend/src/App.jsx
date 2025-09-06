@@ -8,10 +8,10 @@ import { UserCreditsProvider } from "./context/UserCreditContext";
 
 // Lazy-loaded pages (code-splitting)
 const Landing = lazy(() => import("./pages/Landing"));
-const Dashboard = lazy(() => import("./pages/DashBoard"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));   // ✅ fixed casing
 const Upload = lazy(() => import("./pages/Upload"));
 const MyFiles = lazy(() => import("./pages/MyFiles"));
-const Subscripation = lazy(() => import("./pages/Subscripation"));
+const Subscription = lazy(() => import("./pages/Subscription")); // ✅ fixed spelling
 const Transactions = lazy(() => import("./pages/Transactions"));
 const PublicFileView = lazy(() => import("./pages/PublicFileView"));
 const AdminHome = lazy(() => import("./pages/Admin/AdminHome"));
@@ -23,7 +23,7 @@ const AdminTransactionDetail = lazy(() =>
   import("./pages/Admin/AdminTransactionDetail")
 );
 
-// Accessible, minimal fallback while routes load
+// Fallback while routes load
 function RouteFallback() {
   return (
     <div
@@ -36,7 +36,7 @@ function RouteFallback() {
   );
 }
 
-// Basic error boundary to avoid white screens
+// Error boundary
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +57,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-// Auth-protected wrapper (only mounts UserCreditsProvider when signed in)
+// Protected routes
 function ProtectedRoute() {
   return (
     <>
@@ -73,7 +73,7 @@ function ProtectedRoute() {
   );
 }
 
-// Admin gate wrapper using your existing AdminRoute
+// Admin routes
 function AdminGate() {
   return (
     <AdminRoute>
@@ -82,7 +82,7 @@ function AdminGate() {
   );
 }
 
-// 404 Page
+// 404
 function NotFound() {
   return (
     <div className="flex items-center justify-center h-screen">
@@ -114,7 +114,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/upload" element={<Upload />} />
               <Route path="/myfiles" element={<MyFiles />} />
-              <Route path="/subscription" element={<Subscripation />} />
+              <Route path="/subscription" element={<Subscription />} /> {/* ✅ */}
               <Route path="/transactions" element={<Transactions />} />
 
               {/* Admin area */}
